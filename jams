@@ -1,0 +1,2 @@
+rails generate model Property parcelstatus:string sbl:string propertylocation:string propertyclass:integer assessment:integer taxable:integer desc1:string desc2:string deedbook:string frontage:integer yearbuilt:integer beds:integer fireplace:integer ownername:string mailingaddress:string line2:string line3:string street:string citystate:string zip:integer deedpage:string depth:integer squareft:integer baths:integer school:string "latitude:decimal{9,6}" "longitude:decimal{9,6}" --fixture false
+

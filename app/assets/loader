@@ -1,0 +1,1 @@
+copy properties(parcelstatus,sbl,propertylocation,propertyclass,assessment,taxable,desc1,desc2,deedbook,frontage,yearbuilt,beds,fireplace,ownername,mailingaddress,line2,line3,street,citystate,zip,deedpage,depth,squareft,baths,school,latitude,longitude) from '/home/borncamp/property.csv' delimiter ',' CSV;
