@@ -4,6 +4,13 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  resource :properties do
+    post 'boundary'
+  end
+
+  resources :properties
+ 
+  root 'properties#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

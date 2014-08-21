@@ -1,0 +1,6 @@
+<p id="notice"><%= notice %></p>
+<% for attribute in @property.attributes.keys %>
+  <p><%= attribute.humanize %> <%= @property.attributes[attribute].to_s %></p>
+<% end %>
+<%= link_to 'Edit', edit_property_path(@property) %> |
+<%= link_to 'Back', properties_path %>
