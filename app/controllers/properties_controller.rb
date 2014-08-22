@@ -9,10 +9,42 @@ class PropertiesController < ApplicationController
   
   def boundary
     geometry=params[:boundary]
-    query="select count(*) from properties where ST_Contains(ST_GeomFromGeoJSON('#{geometry}'),ST_MakePOINT(longitude, latitude));"
-    Property.find_by_sql(query)
+    query="select * from properties where ST_Contains(ST_GeomFromGeoJSON('#{geometry}'),ST_MakePOINT(longitude, latitude));"
+    @properties=Property.find_by_sql(query)
+
+    csv=csvize @properties
+
+    respond_to do |format|
+      format.html{ send_data csv  }
+      format.csv { send_data @properties.to_csv }
+      #format.xls # { send_data @products.to_csv(col_sep: "\t") }
+    end
+  end
+  
+  def csvize(properties)
+    CSV.generate() do |csv|
+       csv << Property.column_names                                  
+       properties.each do |property|
+         csv << property.attributes.values_at(*Property.column_names)
+       end
+     end
   end
 
+  def boundaryCircle
+    point=params[:point]
+    radius=params[:radius]
+
+    query="select * from properties where ST_Contains(ST_GeomFromGeoJSON('#{geometry}'),ST_MakePOINT(longitude, latitude));"
+    @properties=Property.find_by_sql(query)
+
+    csv=csvize @properties
+
+    respond_to do |format|
+      format.html{ send_data csv  }
+    end
+
+  end
+  
 
   # GET /properties/1
   # GET /properties/1.json

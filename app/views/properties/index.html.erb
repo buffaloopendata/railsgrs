@@ -31,3 +31,16 @@ map.on('draw:created', function (e) {
         <input type="submit" name="boundary" value="Get CSV Records" onclick="getpropertycsv.boundary.value=JSON.stringify(drawnItems.getLayers()[0].toGeoJSON().geometry);" />
 	<input name="authenticity_token" type="hidden" value="1oBtkV8B5BvcPNojfKUTipfmeDlzwa4d8n2iXmM/V08=" />
 </form>
+
+<script>
+
+
+boundary=drawnItems.getLayers()[0]
+if boundary.toGeoJSON().geometry.coordinates.type=='polygon'
+  return boundary.toGeoJSON().geometry
+else
+  radius=boundary.getRadius()
+  center=boundary.getLatLng()
+  return {radius: radius, center: center}
+
+</script>
